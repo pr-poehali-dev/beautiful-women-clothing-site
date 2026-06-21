@@ -169,7 +169,7 @@ const Index = () => {
           </div>
           <div className="relative animate-scale-in">
             <div className="absolute -top-4 -left-4 w-full h-full border-2 border-brand-ink" />
-            <img src={IMG.orange} alt="Модель в спецодежде" className="relative w-full aspect-[4/5] object-cover" />
+            <img src="https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/c4d9202a-ce9d-4f77-aa9e-4f338862c463.jpg" alt="Главная модель FORMA" className="relative w-full aspect-[4/5] object-cover cursor-zoom-in" onClick={() => setLightbox('https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/c4d9202a-ce9d-4f77-aa9e-4f338862c463.jpg')} />
             <div className="absolute bottom-4 right-4 bg-brand-lime px-5 py-3 font-display uppercase tracking-wide text-brand-ink">
               NOVA — 7 490 ₽
             </div>
