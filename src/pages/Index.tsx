@@ -3,9 +3,9 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
 const IMG = {
-  orange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/6d10b782-4648-44c5-99d8-8de6b24deb6a.jpg',
-  teal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/ec116496-5747-4224-87b1-69bc4aaa95e0.jpg',
-  magenta: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/89978910-2142-43c5-a8d5-fb892233668c.jpg',
+  orange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/09621b30-2131-437e-82a1-8433de738386.jpg',
+  teal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/9972e4d3-86fd-4f71-9178-3a434388ca49.jpg',
+  magenta: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/7a6ecfdc-8edb-4356-97a2-51d91f52c12d.jpg',
 };
 
 const NAV = ['Каталог', 'О бренде', 'Портфолио', 'Доставка', 'Отзывы', 'Блог', 'Контакты'];
