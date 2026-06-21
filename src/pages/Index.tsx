@@ -14,6 +14,12 @@ const IMG = {
   shortsLace: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/cb41e90e-65d7-4486-b83b-4cb2c6b6baf1.jpg',
   topPink: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/47a4e8cd-e4dc-4094-b3a7-ad45e35ce3b1.jpg',
   topLace: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/9da60a3b-bfdf-41e0-858e-4d536ac66ee3.jpg',
+  bikePink: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/eba9626d-8779-46fa-8eda-eb64a8950d09.jpg',
+  bikeOrange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/4fd83bc6-b8e9-40bb-a451-8ba099720ed4.jpg',
+  bikeLime: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/69b2d335-99a3-432e-bc29-35a6463a1483.jpg',
+  swimTeal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/67572fde-ec03-4aab-b1d5-d9cc018a6d77.jpg',
+  swimMagenta: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/34d8fc88-dd7c-47c5-9225-f24cce1d5cd7.jpg',
+  swimWhite: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/818fd6a8-9344-4512-b306-1877077f6fc6.jpg',
 };
 
 const NAV = ['Каталог', 'О бренде', 'Портфолио', 'Доставка', 'Отзывы', 'Блог', 'Контакты'];
@@ -60,10 +66,31 @@ const BLOG = [
   { tag: 'Тренды', title: 'Цвет сезона: безопасность в стиле', read: '3 мин' },
 ];
 
+const Lightbox = ({ src, onClose }: { src: string; onClose: () => void }) => (
+  <div
+    className="fixed inset-0 z-[999] flex items-center justify-center bg-brand-ink/90 backdrop-blur-sm cursor-zoom-out animate-scale-in"
+    onClick={onClose}
+  >
+    <button
+      className="absolute top-4 right-4 w-11 h-11 grid place-items-center bg-background/10 hover:bg-background/20 text-background transition-colors"
+      onClick={onClose}
+    >
+      <Icon name="X" size={24} />
+    </button>
+    <img
+      src={src}
+      alt="Увеличенное фото"
+      className="max-h-[90vh] max-w-[90vw] object-contain shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    />
+  </div>
+);
+
 const Index = () => {
   const [activeSizes, setActiveSizes] = useState<string[]>([]);
   const [activeColors, setActiveColors] = useState<string[]>([]);
   const [activeTypes, setActiveTypes] = useState<string[]>([]);
+  const [lightbox, setLightbox] = useState<string | null>(null);
 
   const toggle = (arr: string[], set: (v: string[]) => void, val: string) =>
     set(arr.includes(val) ? arr.filter((v) => v !== val) : [...arr, val]);
@@ -87,6 +114,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground noise-grid">
+      {lightbox && <Lightbox src={lightbox} onClose={() => setLightbox(null)} />}
       {/* Header */}
       <header className="sticky top-0 z-50 border-b-2 border-brand-ink bg-background/90 backdrop-blur">
         <div className="container flex items-center justify-between py-4">
@@ -243,6 +271,9 @@ const Index = () => {
                           {p.tag}
                         </span>
                       )}
+                      <button onClick={() => setLightbox(p.img)} className="absolute top-3 right-3 w-9 h-9 grid place-items-center bg-background/80 text-brand-ink opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime">
+                        <Icon name="ZoomIn" size={16} />
+                      </button>
                       <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
                         <Icon name="Plus" size={20} />
                       </button>
@@ -328,6 +359,9 @@ const Index = () => {
                     {p.tag}
                   </span>
                 )}
+                <button onClick={() => setLightbox(p.img)} className="absolute top-2 right-2 w-8 h-8 grid place-items-center bg-background/80 text-brand-ink opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime">
+                  <Icon name="ZoomIn" size={14} />
+                </button>
                 <button className="absolute bottom-2 right-2 w-9 h-9 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
                   <Icon name="Plus" size={16} />
                 </button>
@@ -360,6 +394,9 @@ const Index = () => {
                     {p.tag}
                   </span>
                 )}
+                <button onClick={() => setLightbox(p.img)} className="absolute top-3 right-3 w-9 h-9 grid place-items-center bg-background/80 text-brand-ink opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime">
+                  <Icon name="ZoomIn" size={16} />
+                </button>
                 <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
                   <Icon name="Plus" size={20} />
                 </button>
@@ -367,6 +404,99 @@ const Index = () => {
               <div className="p-5 flex items-center justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-wide text-brand-ink/50">{p.label} · {p.color}</p>
+                  <h3 className="font-display text-xl uppercase mt-1">{p.name}</h3>
+                </div>
+                <div className="text-right">
+                  <div className="font-display text-xl">{p.price.toLocaleString('ru')} ₽</div>
+                  <div className="text-xs text-brand-ink/50 mt-1">S — 5XL</div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Cycling */}
+      <section className="bg-brand-ink text-background py-16 md:py-24">
+        <div className="container">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-brand-orange px-4 py-1.5 font-display text-xs uppercase tracking-widest text-background mb-4">
+                <Icon name="Bike" size={14} /> Велолиния
+              </span>
+              <h2 className="font-display text-4xl md:text-6xl font-700 uppercase">Велоодежда</h2>
+            </div>
+            <p className="text-background/60 max-w-sm">Латексные велокостюмы и шорты — максимальная аэродинамика и яркий стиль для plus size спортсменок.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { img: IMG.bikePink, name: 'Костюм SPRINT', sub: 'Латекс · Розовый', price: 6990, tag: 'Хит' },
+              { img: IMG.bikeOrange, name: 'Шорты PACE', sub: 'Латекс · Оранжевый', price: 4490, tag: 'Новинка' },
+              { img: IMG.bikeLime, name: 'Комбинезон RACE', sub: 'Латекс · Лайм', price: 7490, tag: '' },
+            ].map((p) => (
+              <article key={p.name} className="group border-2 border-background/20 bg-background/5 hover-scale">
+                <div className="relative overflow-hidden aspect-[4/5]">
+                  <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  {p.tag && (
+                    <span className="absolute top-3 left-3 bg-brand-lime px-3 py-1 font-display text-xs uppercase tracking-wide text-brand-ink">
+                      {p.tag}
+                    </span>
+                  )}
+                  <button onClick={() => setLightbox(p.img)} className="absolute top-3 right-3 w-9 h-9 grid place-items-center bg-background/20 text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime hover:text-brand-ink">
+                    <Icon name="ZoomIn" size={16} />
+                  </button>
+                  <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-orange text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime hover:text-brand-ink">
+                    <Icon name="Plus" size={20} />
+                  </button>
+                </div>
+                <div className="p-5 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-background/40">{p.sub}</p>
+                    <h3 className="font-display text-xl uppercase mt-1 text-background">{p.name}</h3>
+                  </div>
+                  <div className="font-display text-xl text-background">{p.price.toLocaleString('ru')} ₽</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Swimwear */}
+      <section className="container py-16 md:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div>
+            <span className="inline-flex items-center gap-2 bg-brand-lime px-4 py-1.5 font-display text-xs uppercase tracking-widest text-brand-ink mb-4">
+              <Icon name="Waves" size={14} /> Плавательная линия
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-700 uppercase">Купальники<br />для пловчих</h2>
+          </div>
+          <p className="text-brand-ink/60 max-w-sm">Созданы для широких плеч и объёмных бёдер — соревновательный крой, не сдерживающий движения.</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { img: IMG.swimTeal, name: 'AQUA PRO', sub: 'Бирюза · Соревнования', price: 5490, tag: 'Хит' },
+            { img: IMG.swimMagenta, name: 'WAVE ELITE', sub: 'Магента · Открытая вода', price: 5990, tag: 'Новинка' },
+            { img: IMG.swimWhite, name: 'STREAM X', sub: 'Белый · Тренировки', price: 4990, tag: '' },
+          ].map((p) => (
+            <article key={p.name} className="group border-2 border-brand-ink bg-card hover-scale">
+              <div className="relative overflow-hidden aspect-[4/5]">
+                <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {p.tag && (
+                  <span className="absolute top-3 left-3 bg-brand-lime px-3 py-1 font-display text-xs uppercase tracking-wide text-brand-ink">
+                    {p.tag}
+                  </span>
+                )}
+                <button onClick={() => setLightbox(p.img)} className="absolute top-3 right-3 w-9 h-9 grid place-items-center bg-background/80 text-brand-ink opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-lime">
+                  <Icon name="ZoomIn" size={16} />
+                </button>
+                <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
+                  <Icon name="Plus" size={20} />
+                </button>
+              </div>
+              <div className="p-5 flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-brand-ink/50">{p.sub}</p>
                   <h3 className="font-display text-xl uppercase mt-1">{p.name}</h3>
                 </div>
                 <div className="text-right">
