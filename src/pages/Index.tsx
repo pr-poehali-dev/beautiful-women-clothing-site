@@ -6,6 +6,8 @@ const IMG = {
   orange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/09621b30-2131-437e-82a1-8433de738386.jpg',
   teal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/9972e4d3-86fd-4f71-9178-3a434388ca49.jpg',
   magenta: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/7a6ecfdc-8edb-4356-97a2-51d91f52c12d.jpg',
+  shortsOrange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/91aeef5b-f36e-4907-9bda-934b42165598.jpg',
+  shortsTeal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/920afc46-e805-4cc1-bcaa-a6fc8f57c149.jpg',
 };
 
 const NAV = ['Каталог', 'О бренде', 'Портфолио', 'Доставка', 'Отзывы', 'Блог', 'Контакты'];
@@ -283,6 +285,47 @@ const Index = () => {
             <img src={IMG.teal} alt="Модель" className="w-full aspect-[3/4] object-cover translate-y-6" />
             <img src={IMG.magenta} alt="Модель" className="w-full aspect-[3/4] object-cover" />
           </div>
+        </div>
+      </section>
+
+      {/* Shorts collection */}
+      <section className="container py-16 md:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div>
+            <span className="inline-flex items-center gap-2 bg-brand-lime px-4 py-1.5 font-display text-xs uppercase tracking-widest text-brand-ink mb-4">
+              Летняя линейка
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-700 uppercase">Короткие шорты</h2>
+          </div>
+          <p className="text-brand-ink/60 max-w-sm">Латексные шорты для работы в жару — облегающий крой, яркие цвета, plus size от S до 5XL.</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            { img: IMG.shortsOrange, name: 'Шорты HEAT', color: 'Оранжевый', price: 3490, tag: 'Хит лета' },
+            { img: IMG.shortsTeal, name: 'Шорты COOL', color: 'Бирюза', price: 3290, tag: 'Новинка' },
+          ].map((p) => (
+            <article key={p.name} className="group border-2 border-brand-ink bg-card hover-scale">
+              <div className="relative overflow-hidden aspect-[3/4]">
+                <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <span className="absolute top-3 left-3 bg-brand-lime px-3 py-1 font-display text-xs uppercase tracking-wide text-brand-ink">
+                  {p.tag}
+                </span>
+                <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
+                  <Icon name="Plus" size={20} />
+                </button>
+              </div>
+              <div className="p-6 flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-brand-ink/50">Шорты • {p.color}</p>
+                  <h3 className="font-display text-2xl uppercase mt-1">{p.name}</h3>
+                </div>
+                <div className="text-right">
+                  <div className="font-display text-2xl">{p.price.toLocaleString('ru')} ₽</div>
+                  <div className="text-xs text-brand-ink/50 mt-1">S — 5XL</div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
