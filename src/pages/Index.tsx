@@ -8,6 +8,12 @@ const IMG = {
   magenta: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/7a6ecfdc-8edb-4356-97a2-51d91f52c12d.jpg',
   shortsOrange: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/91aeef5b-f36e-4907-9bda-934b42165598.jpg',
   shortsTeal: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/920afc46-e805-4cc1-bcaa-a6fc8f57c149.jpg',
+  shortsPink: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/a831382c-d646-4103-a36a-1dd346d43ca6.jpg',
+  shortsWhite: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/2c20e9cf-8454-48a2-9464-a28eecd6e958.jpg',
+  shortsPlush: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/bea378d6-774f-4bff-8a21-3e1283413f62.jpg',
+  shortsLace: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/cb41e90e-65d7-4486-b83b-4cb2c6b6baf1.jpg',
+  topPink: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/47a4e8cd-e4dc-4094-b3a7-ad45e35ce3b1.jpg',
+  topLace: 'https://cdn.poehali.dev/projects/b8737cb9-7feb-4f40-b12d-2d9ceb8ab163/files/9da60a3b-bfdf-41e0-858e-4d536ac66ee3.jpg',
 };
 
 const NAV = ['Каталог', 'О бренде', 'Портфолио', 'Доставка', 'Отзывы', 'Блог', 'Контакты'];
@@ -288,39 +294,83 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Shorts collection */}
+      {/* Shorts & Tops collection */}
       <section className="container py-16 md:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-4">
           <div>
             <span className="inline-flex items-center gap-2 bg-brand-lime px-4 py-1.5 font-display text-xs uppercase tracking-widest text-brand-ink mb-4">
               Летняя линейка
             </span>
-            <h2 className="font-display text-4xl md:text-6xl font-700 uppercase">Короткие шорты</h2>
+            <h2 className="font-display text-4xl md:text-6xl font-700 uppercase">Шорты и верха</h2>
           </div>
-          <p className="text-brand-ink/60 max-w-sm">Латексные шорты для работы в жару — облегающий крой, яркие цвета, plus size от S до 5XL.</p>
+          <p className="text-brand-ink/60 max-w-sm">Латекс, плюш и кружево — облегающий крой, plus size от S до 5XL.</p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+
+        {/* Shorts */}
+        <div className="mt-10 mb-6 flex items-center gap-4">
+          <span className="font-display text-2xl uppercase">Короткие шорты</span>
+          <div className="flex-1 h-0.5 bg-brand-ink/20" />
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {[
-            { img: IMG.shortsOrange, name: 'Шорты HEAT', color: 'Оранжевый', price: 3490, tag: 'Хит лета' },
-            { img: IMG.shortsTeal, name: 'Шорты COOL', color: 'Бирюза', price: 3290, tag: 'Новинка' },
+            { img: IMG.shortsOrange, name: 'HEAT', label: 'Латекс', color: 'Оранжевый', price: 3490, tag: 'Хит' },
+            { img: IMG.shortsTeal, name: 'COOL', label: 'Латекс', color: 'Бирюза', price: 3290, tag: 'Новинка' },
+            { img: IMG.shortsPink, name: 'ROSE', label: 'Латекс', color: 'Розовый', price: 3390, tag: '' },
+            { img: IMG.shortsWhite, name: 'BLANC', label: 'Латекс', color: 'Белый', price: 3490, tag: '' },
+            { img: IMG.shortsPlush, name: 'PLUSH', label: 'Плюш', color: 'Пудра', price: 2990, tag: 'Уют' },
+            { img: IMG.shortsLace, name: 'LACE', label: 'Кружево', color: 'Белый', price: 3190, tag: 'Нежность' },
           ].map((p) => (
             <article key={p.name} className="group border-2 border-brand-ink bg-card hover-scale">
               <div className="relative overflow-hidden aspect-[3/4]">
                 <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <span className="absolute top-3 left-3 bg-brand-lime px-3 py-1 font-display text-xs uppercase tracking-wide text-brand-ink">
-                  {p.tag}
-                </span>
+                {p.tag && (
+                  <span className="absolute top-2 left-2 bg-brand-lime px-2 py-0.5 font-display text-[10px] uppercase tracking-wide text-brand-ink">
+                    {p.tag}
+                  </span>
+                )}
+                <button className="absolute bottom-2 right-2 w-9 h-9 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
+                  <Icon name="Plus" size={16} />
+                </button>
+              </div>
+              <div className="p-3">
+                <p className="text-[10px] uppercase tracking-wide text-brand-ink/50">{p.label} · {p.color}</p>
+                <h3 className="font-display text-base uppercase mt-0.5">{p.name}</h3>
+                <div className="font-display text-sm mt-1">{p.price.toLocaleString('ru')} ₽</div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Tops */}
+        <div className="mt-12 mb-6 flex items-center gap-4">
+          <span className="font-display text-2xl uppercase">Верха</span>
+          <div className="flex-1 h-0.5 bg-brand-ink/20" />
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { img: IMG.topPink, name: 'Топ GLOW', label: 'Латекс', color: 'Розовый', price: 2790, tag: 'Хит' },
+            { img: IMG.topLace, name: 'Топ FLEUR', label: 'Кружево', color: 'Белый', price: 2590, tag: 'Нежность' },
+            { img: IMG.orange, name: 'Топ SIGNAL', label: 'Латекс', color: 'Оранжевый', price: 2990, tag: 'Новинка' },
+          ].map((p) => (
+            <article key={p.name} className="group border-2 border-brand-ink bg-card hover-scale">
+              <div className="relative overflow-hidden aspect-[4/5]">
+                <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {p.tag && (
+                  <span className="absolute top-3 left-3 bg-brand-lime px-3 py-1 font-display text-xs uppercase tracking-wide text-brand-ink">
+                    {p.tag}
+                  </span>
+                )}
                 <button className="absolute bottom-3 right-3 w-11 h-11 grid place-items-center bg-brand-ink text-background opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-orange">
                   <Icon name="Plus" size={20} />
                 </button>
               </div>
-              <div className="p-6 flex items-center justify-between">
+              <div className="p-5 flex items-center justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-brand-ink/50">Шорты • {p.color}</p>
-                  <h3 className="font-display text-2xl uppercase mt-1">{p.name}</h3>
+                  <p className="text-xs uppercase tracking-wide text-brand-ink/50">{p.label} · {p.color}</p>
+                  <h3 className="font-display text-xl uppercase mt-1">{p.name}</h3>
                 </div>
                 <div className="text-right">
-                  <div className="font-display text-2xl">{p.price.toLocaleString('ru')} ₽</div>
+                  <div className="font-display text-xl">{p.price.toLocaleString('ru')} ₽</div>
                   <div className="text-xs text-brand-ink/50 mt-1">S — 5XL</div>
                 </div>
               </div>
