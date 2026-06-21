@@ -4,8 +4,12 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --brand-orange: 18 95% 54%;
+    --brand-lime: 78 92% 52%;
+    --brand-ink: 240 12% 8%;
+
+    --background: 40 30% 97%;
+    --foreground: 240 12% 8%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -96,6 +100,23 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 2px hsl(var(--brand-ink));
+    color: transparent;
+  }
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-[1.03];
+  }
+  .noise-grid {
+    background-image: radial-gradient(
+      hsl(var(--brand-ink) / 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
   }
 }
